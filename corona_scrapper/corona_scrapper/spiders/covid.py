@@ -16,6 +16,7 @@ class CovidSpider(scrapy.Spider):
             activeCase = row.xpath(".//td[9]/text()").get()
             seriousCritical = row.xpath(".//td[10]/text()").get()
             totalTest = row.xpath('.//td[13]/text()').get()
+            population = row.xpath('.//td[15]/a/text()').get()
 
             yield {
                 "CountryName": country,
@@ -24,5 +25,6 @@ class CovidSpider(scrapy.Spider):
                 "Total Recovered": totalRecovered,
                 "Active Cases": activeCase,
                 "Critical Cases": seriousCritical,
-                "Total Test": totalTest
+                "Total Test": totalTest,
+                "Population": population
             }
